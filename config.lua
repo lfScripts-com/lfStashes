@@ -11,5 +11,5 @@ Config.ManageCommand = 'setstashes'
 Config.UseTerritory = false 
 
 -- Utilisez vous le script LfInteract ? true = oui, false = non.
-Config.Interact = true
+Config.Interact = false
 
