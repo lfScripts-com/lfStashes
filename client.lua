@@ -12,21 +12,21 @@ local accessibleStashes = {}
 local playerCrewId = nil
 local isUIOpen = false
 
--- Table pour stocker les IDs des points d'interaction enregistrés (LfInteract)
+-- Table pour stocker les IDs des points d'interaction enregistrés (lfInteract)
 local registeredInteractionPoints = {}
 
 -- ================================================================
--- Fonctions d'interaction LfInteract
+-- Fonctions d'interaction lfInteract
 -- ================================================================
 
--- Fonction pour vérifier si LfInteract est disponible
+-- Fonction pour vérifier si lfInteract est disponible
 local function IsLfInteractAvailable()
     if not Config.Interact then
         return false
     end
     
     -- Vérifier que l'export existe
-    local lfInteract = exports['LfInteract']
+    local lfInteract = exports['lfInteract']
     if not lfInteract then
         return false
     end
@@ -46,7 +46,7 @@ local function RegisterStashInteractionPoints()
     end
     
     -- Supprimer les anciens points
-    local lfInteract = exports['LfInteract']
+    local lfInteract = exports['lfInteract']
     for _, pointId in ipairs(registeredInteractionPoints) do
         if lfInteract and type(lfInteract.RemoveInteraction) == 'function' then
             lfInteract:RemoveInteraction(pointId)
@@ -62,7 +62,7 @@ local function RegisterStashInteractionPoints()
             
             -- S'assurer que les coordonnées sont au bon format
             if type(coords) == 'table' and coords.x and coords.y and coords.z then
-                local lfInteract = exports['LfInteract']
+                local lfInteract = exports['lfInteract']
                 if lfInteract and type(lfInteract.AddInteraction) == 'function' then
                     lfInteract:AddInteraction({
                         id = pointId,
@@ -207,7 +207,7 @@ end)
 RegisterNetEvent('lfstashes:openInventory', function(stashId)
     -- Désactiver les interactions si LfInteract est activé
     if Config.Interact then
-        local lfInteract = exports['LfInteract']
+        local lfInteract = exports['lfInteract']
         if lfInteract and type(lfInteract.Disable) == 'function' then
             lfInteract:Disable(true)
         end
@@ -223,7 +223,7 @@ RegisterNetEvent('lfstashes:openInventory', function(stashId)
             end
             
             -- Réactiver les interactions
-            local lfInteract = exports['LfInteract']
+            local lfInteract = exports['lfInteract']
             if lfInteract and type(lfInteract.Disable) == 'function' then
                 lfInteract:Disable(false)
             end
@@ -443,7 +443,7 @@ CreateThread(function()
 end)
 
 -- ================================================================
--- SYSTÈME D'INTERACTION (LfInteract ou ESX)
+-- SYSTÈME D'INTERACTION (lfInteract ou ESX)
 -- ================================================================
 
 -- Thread pour vérifier périodiquement que les points d'interaction sont à jour
@@ -487,7 +487,7 @@ AddEventHandler('onResourceStop', function(resourceName)
     
     -- Supprimer tous les points d'interaction enregistrés (si LfInteract est disponible)
     if IsLfInteractAvailable() then
-        local lfInteract = exports['LfInteract']
+        local lfInteract = exports['lfInteract']
         for _, pointId in ipairs(registeredInteractionPoints) do
             if lfInteract and type(lfInteract.RemoveInteraction) == 'function' then
                 lfInteract:RemoveInteraction(pointId)

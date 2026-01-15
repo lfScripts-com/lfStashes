@@ -36,4 +36,4 @@ server_scripts {
 }
 
 -- Dépendance optionnelle pour LfInteract
--- dependency 'LfInteract'
+dependency 'lfInteract'

@@ -8,8 +8,8 @@ Config.Command = 'addstashes'
 Config.ManageCommand = 'setstashes'
 
 -- Activer le support des crews (nécessite LfTerritory)
-Config.UseTerritory = false 
+Config.UseTerritory = true 
 
 -- Utilisez vous le script LfInteract ? true = oui, false = non.
-Config.Interact = false
+Config.Interact = true
 
